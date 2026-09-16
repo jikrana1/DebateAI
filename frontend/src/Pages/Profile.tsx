@@ -255,6 +255,9 @@ const Profile: React.FC = () => {
     setSelectedDebate(debate);
     setIsDebateDialogOpen(true);
     setTranscriptLoading(true);
+        setErrorMessage("");
+        setFullTranscript(null); 
+
     try {
       const transcript = await transcriptService.getTranscriptById(debate.id);
       setFullTranscript(transcript);
