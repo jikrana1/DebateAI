@@ -258,8 +258,14 @@ const Profile: React.FC = () => {
     try {
       const transcript = await transcriptService.getTranscriptById(debate.id);
       setFullTranscript(transcript);
-    } catch {
-      // transcript fetch failed
+    } catch(error) {
+       console.error("Error fetching transcript:", error);
+       setFullTranscript(null);
+       setErrorMessage(
+         error instanceof Error
+           ? error.message
+           : "Failed to load transcript. Please try again."
+       );
     } finally {
       setTranscriptLoading(false);
     }
